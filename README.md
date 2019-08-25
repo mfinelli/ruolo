@@ -113,3 +113,19 @@ roles:
   POST_CREATOR:
     - CREATE_POST
 ```
+
+## Gem Development
+
+To hack on the gem you'll need PostgreSQL installed and running, then create a
+user and database:
+
+```shell
+$ createuser ruolo
+$ createdb ruolo
+```
+
+Then you can ensure everything was created correctly:
+
+```shell
+$ psql -U ruolo
+```
