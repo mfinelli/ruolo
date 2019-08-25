@@ -65,8 +65,8 @@ Sequel.migration do
         on_update: :cascade, on_delete: :cascade
       foreign_key :role_id, :roles, null: false, type: :Bignum,
         on_update: :cascade, on_delete: :cascade
-      primary_key [:user_id, :role_id]
-      index [:role_id, :user_id]
+      primary_key %i[user_id role_id]
+      index %i[role_id user_id]
     end
 
     create_table :roles_permissions do
@@ -74,8 +74,8 @@ Sequel.migration do
         on_update: :cascade, on_delete: :cascade
       foreign_key :permission_id, :permissions, null: false, type: :Bignum,
         on_update: :cascade, on_delete: :cascade
-      primary_key [:role_id, :permission_id]
-      index [:permission_id, :role_id]
+      primary_key %i[role_id permission_id]
+      index %i[permission_id role_id]
     end
   end
 end
