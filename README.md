@@ -84,7 +84,8 @@ end
 ### User Class
 
 You'll need to set your `User` class to use the correct association class, and
-configure `ruolo` to use the correct user class:
+configure `ruolo` to use the correct user class (you can also include the
+ruolo user module for the `permission?` mixin helper):
 
 ```ruby
 Ruolo.configure do |c|
@@ -93,6 +94,7 @@ end
 
 module YourApp
   class User < Sequel::Model
+    include Ruolo::Models::User
     many_to_many :roles, join_table: :users_roles, class: 'Ruolo::Models::Role'
   end
 end
