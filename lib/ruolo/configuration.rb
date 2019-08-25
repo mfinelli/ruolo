@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Ruolo
   class Configuration
     attr_accessor :user_class

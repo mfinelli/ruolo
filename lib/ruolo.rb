@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'ruolo/configuration'
 require 'ruolo/models'
-require "ruolo/version"
+require 'ruolo/version'
 
 module Ruolo
   class << self
