@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'ruolo/configuration'
-require 'ruolo/models'
 require 'ruolo/version'
 
 module Ruolo
@@ -10,14 +9,21 @@ module Ruolo
   end
 
   def self.configuration
-    @configuration ||= Configuration.new
+    @configuration ||= Ruolo::Configuration.new
   end
 
   def self.reset
-    @configuration = Configuration.new
+    @configuration = Ruolo::Configuration.new
   end
 
   def self.configure
     yield(configuration)
   end
+
+  def self.sync!(policy_file)
+    Ruolo::Sync.new(policy_file).sync!
+  end
 end
+
+require 'ruolo/models'
+require 'ruolo/sync'

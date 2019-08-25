@@ -2,9 +2,10 @@
 
 module Ruolo
   class Configuration
-    attr_accessor :user_class
+    attr_accessor :connection, :user_class
 
     def initialize
+      @connection = nil
       @user_class = 'User'
     end
   end

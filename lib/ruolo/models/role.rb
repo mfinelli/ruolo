@@ -2,6 +2,8 @@
 
 require 'sequel'
 
+require 'ruolo/configuration'
+
 module Ruolo
   module Models
     class Role < Sequel::Model

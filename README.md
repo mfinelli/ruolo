@@ -97,3 +97,19 @@ module YourApp
   end
 end
 ```
+
+### Policy
+
+To create your static permissions and roles create a yaml file with the
+following format, the permission list is derived from the permissions that are
+defined for the roles:
+
+```yaml
+---
+roles:
+  POST_ADMIN:
+    - CREATE_POST
+    - DELETE_POST
+  POST_CREATOR:
+    - CREATE_POST
+```
