@@ -12,6 +12,7 @@ module Ruolo
     def sync!
       Ruolo.configuration.connection.transaction do
         permissions_diff
+        roles_diff
       end
     end
 
@@ -27,15 +28,9 @@ module Ruolo
 
     def permissions_diff
       permissions = Ruolo::Models::Permission.all
-
-      remove = []
-
       policy = permissions_from_policy
 
-      permissions.each do |permission|
-        remove << permission unless policy.include? permission.name
-      end
-
+      remove = permissions.select{|perm| !policy.include?(perm.name)}
       add = policy.reject{|pol| permissions.map{|perm| perm.name}.include?(pol)}
 
       remove.each do |permission|
@@ -44,6 +39,22 @@ module Ruolo
 
       add.each do |permission|
         Ruolo::Models::Permission.create(name: permission)
+      end
+    end
+
+    def roles_diff
+      roles = Ruolo::Models::Role.all
+      policy = roles_from_policy
+
+      remove = roles.select{|role| !policy.include?(role.name)}
+      add = policy.reject{|pol| roles.map{|rol| rol.name}.include?(pol)}
+
+      remove.each do |role|
+        role.destroy
+      end
+
+      add.each do |role|
+        Ruolo::Models::Role.create(name: role)
       end
     end
   end
