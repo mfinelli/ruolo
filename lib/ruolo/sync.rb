@@ -13,6 +13,7 @@ module Ruolo
       Ruolo.configuration.connection.transaction do
         permissions_diff
         roles_diff
+        roles_permissions_diff
       end
     end
 
@@ -55,6 +56,26 @@ module Ruolo
 
       add.each do |role|
         Ruolo::Models::Role.create(name: role)
+      end
+    end
+
+    def roles_permissions_diff
+      roles = Ruolo::Models::Role.eager_graph(:permissions).all
+
+      # at this point we should _only_ have the actual roles in the database
+      roles.each do |role|
+        policy = @policy_document[:roles][role.name.to_sym]
+
+        remove = role.permissions.select{|perm| !policy.include?(perm.name)}
+        add = policy.reject{|pol| role.permissions.map{|perm| perm.name}.include?(pol)}
+
+        remove.each do |permission|
+          role.remove_permission permission
+        end
+
+        add.each do |permission|
+          role.add_permission Ruolo::Models::Permission.where(name: permission).first
+        end
       end
     end
   end
