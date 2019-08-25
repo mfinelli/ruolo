@@ -80,3 +80,20 @@ Sequel.migration do
   end
 end
 ```
+
+### User Class
+
+You'll need to set your `User` class to use the correct association class, and
+configure `ruolo` to use the correct user class:
+
+```ruby
+Ruolo.configure do |c|
+  c.user_class = 'YourApp::User'
+end
+
+module YourApp
+  class User < Sequel::Model
+    many_to_many :roles, join_table: :users_roles, class: 'Ruolo::Models::Role'
+  end
+end
+```
