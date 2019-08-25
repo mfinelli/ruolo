@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'yaml'
 
 require 'ruolo/configuration'
@@ -20,23 +22,21 @@ module Ruolo
     private
 
     def permissions_from_policy
-      @policy_document[:roles].map{|role, permissions| permissions}.flatten.uniq
+      @policy_document[:roles].map { |_role, permissions| permissions }.flatten.uniq
     end
 
     def roles_from_policy
-      @policy_document[:roles].map{|role, permissions| role.to_s}
+      @policy_document[:roles].map { |role, _permissions| role.to_s }
     end
 
     def permissions_diff
       permissions = Ruolo::Models::Permission.all
       policy = permissions_from_policy
 
-      remove = permissions.select{|perm| !policy.include?(perm.name)}
-      add = policy.reject{|pol| permissions.map{|perm| perm.name}.include?(pol)}
+      remove = permissions.reject { |perm| policy.include?(perm.name) }
+      add = policy.reject { |pol| permissions.map(&:name).include?(pol) }
 
-      remove.each do |permission|
-        permission.destroy
-      end
+      remove.each(&:destroy)
 
       add.each do |permission|
         Ruolo::Models::Permission.create(name: permission)
@@ -47,12 +47,10 @@ module Ruolo
       roles = Ruolo::Models::Role.all
       policy = roles_from_policy
 
-      remove = roles.select{|role| !policy.include?(role.name)}
-      add = policy.reject{|pol| roles.map{|rol| rol.name}.include?(pol)}
+      remove = roles.reject { |role| policy.include?(role.name) }
+      add = policy.reject { |pol| roles.map(&:name).include?(pol) }
 
-      remove.each do |role|
-        role.destroy
-      end
+      remove.each(&:destroy)
 
       add.each do |role|
         Ruolo::Models::Role.create(name: role)
@@ -66,8 +64,8 @@ module Ruolo
       roles.each do |role|
         policy = @policy_document[:roles][role.name.to_sym]
 
-        remove = role.permissions.select{|perm| !policy.include?(perm.name)}
-        add = policy.reject{|pol| role.permissions.map{|perm| perm.name}.include?(pol)}
+        remove = role.permissions.reject { |perm| policy.include?(perm.name) }
+        add = policy.reject { |pol| role.permissions.map(&:name).include?(pol) }
 
         remove.each do |permission|
           role.remove_permission permission
