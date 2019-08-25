@@ -122,7 +122,15 @@ After adding the migrations, configuring ruolo and your custom user class, and
 defining your RBAC policy, run the sync during your application startup:
 
 ```ruby
+require 'sequel'
 require 'ruolo'
+
+DB = Sequel.connect('...')
+
+Ruolo.configure do |config|
+  config.connection = DB
+end
+
 Ruolo.sync!('./path/to/policy.yml')
 ```
 
