@@ -114,6 +114,16 @@ roles:
     - CREATE_POST
 ```
 
+### Sync
+
+After adding the migrations, configuring ruolo and your custom user class, and
+defining your RBAC policy, run the sync during your application startup:
+
+```ruby
+require 'ruolo'
+Ruolo.sync!('./path/to/policy.yml')
+```
+
 ## Gem Development
 
 To hack on the gem you'll need PostgreSQL installed and running, then create a
