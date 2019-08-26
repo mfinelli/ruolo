@@ -150,6 +150,15 @@ Then you can ensure everything was created correctly:
 $ psql -U ruolo
 ```
 
+You can use the `bin/console` command which will load in dependencies, and
+migrate the database on load. It also provides the helper methods `reset_db!`
+and `migrate_db!` if you want to run those operations manually after the code
+has loaded.
+
+```shell
+$ bundle exec bin/console
+```
+
 ## License
 
 ```
