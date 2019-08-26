@@ -19,9 +19,9 @@ before_install:
   - gem --version
 
 script:
-  # - bundle exec rubocop
+  - bundle exec rubocop
   - bundle exec rspec
-  # - bundle exec yard
+  - bundle exec yard
 
 notifications:
   email: false

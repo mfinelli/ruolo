@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
+require 'coveralls'
 require 'rspec'
 require 'sequel'
+
+Coveralls.wear!
 
 DB = if ENV['TRAVIS'].to_s.casecmp('true').zero?
        Sequel.connect('postgres://postgres@localhost/ruolo')
