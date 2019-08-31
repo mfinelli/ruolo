@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'sequel'
+
 require 'ruolo/models/user'
 
 module RuoloMocks

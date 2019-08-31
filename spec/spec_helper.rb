@@ -13,6 +13,14 @@ DB = if ENV['TRAVIS'].to_s.casecmp('true').zero?
        Sequel.connect('postgres://ruolo@localhost/ruolo')
      end
 
+# Start with a fresh database
+tables = DB.tables.map(&:to_s).map { |t| %("#{t}") }.join(',')
+DB.run "DROP TABLE #{tables};" unless tables.empty?
+
+# Create the necessary tables
+Sequel.extension :migration
+Sequel::Migrator.run(DB, File.expand_path(File.join(File.dirname(__FILE__), 'fixtures', 'migrations')))
+
 require 'ruolo'
 require_relative 'mocks/user'
 
@@ -36,14 +44,6 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 
   config.before(:suite) do
-    # Start with a fresh database
-    tables = DB.tables.map(&:to_s).map { |t| %("#{t}") }.join(',')
-    DB.run "DROP TABLE #{tables};" unless tables.empty?
-
-    # Create the necessary tables
-    Sequel.extension :migration
-    Sequel::Migrator.run(DB, File.expand_path(File.join(File.dirname(__FILE__), 'fixtures', 'migrations')))
-
     Ruolo.configure do |c|
       c.user_class = RuoloMocks::User
       c.connection = DB
