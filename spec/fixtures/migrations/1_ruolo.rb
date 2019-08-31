@@ -21,7 +21,6 @@ Sequel.migration do
       primary_key :id, type: :Bignum
 
       column :name, String, null: false, size: 150, unique: true
-      column :description, String
 
       column :created_at, DateTime, null: false
       column :updated_at, DateTime, null: false
@@ -33,7 +32,6 @@ Sequel.migration do
       primary_key :id, type: :Bignum
 
       column :name, String, null: false, size: 150, unique: true
-      column :description, String
 
       column :created_at, DateTime, null: false
       column :updated_at, DateTime, null: false

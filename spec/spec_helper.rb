@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'coveralls'
+require 'factory_bot'
 require 'rspec'
 require 'sequel'
 
@@ -12,7 +13,12 @@ DB = if ENV['TRAVIS'].to_s.casecmp('true').zero?
        Sequel.connect('postgres://ruolo@localhost/ruolo')
      end
 
+require 'ruolo'
+require_relative 'mocks/user'
+
 RSpec.configure do |config|
+  config.include FactoryBot::Syntax::Methods
+
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
@@ -37,5 +43,12 @@ RSpec.configure do |config|
     # Create the necessary tables
     Sequel.extension :migration
     Sequel::Migrator.run(DB, File.expand_path(File.join(File.dirname(__FILE__), 'fixtures', 'migrations')))
+
+    Ruolo.configure do |c|
+      c.user_class = RuoloMocks::User
+      c.connection = DB
+    end
+
+    FactoryBot.find_definitions
   end
 end
