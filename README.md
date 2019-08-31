@@ -1,6 +1,7 @@
 # Ruolo
 
 [![Build Status](https://travis-ci.org/mfinelli/ruolo.svg?branch=master)](https://travis-ci.org/mfinelli/ruolo)
+[![Coverage Status](https://coveralls.io/repos/github/mfinelli/ruolo/badge.svg?branch=master)](https://coveralls.io/github/mfinelli/ruolo?branch=master)
 
 A library for generating and keeping your static role-based access-control
 policies in sync with your database using the
