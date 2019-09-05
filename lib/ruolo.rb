@@ -20,7 +20,7 @@ module Ruolo
     yield(configuration)
   end
 
-  def self.sync!(policy_file)
+  def self.synchronize!(policy_file)
     Ruolo::Sync.new(policy_file).sync!
   end
 end

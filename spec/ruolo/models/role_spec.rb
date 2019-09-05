@@ -6,7 +6,7 @@ require 'ruolo/models/role'
 
 RSpec.describe Ruolo::Models::Role do
   after(:all) do
-    Ruolo::Models::Role.all.each{ |r| r.destroy }
+    described_class.all.each(&:destroy)
   end
 
   it 'saves with valid input' do

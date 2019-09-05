@@ -14,13 +14,13 @@ RSpec.describe Ruolo::Models::User do
   end
 
   before(:all) do
-    Ruolo.sync!(File.expand_path(File.join(__FILE__, '..', '..', '..', 'fixtures','policies','user_spec.yml')))
+    Ruolo.sync!(File.expand_path(File.join(__FILE__, '..', '..', '..', 'fixtures', 'policies', 'user_spec.yml')))
   end
 
   after(:all) do
-    Ruolo::Models::Role.all.each{ |r| r.destroy }
-    Ruolo::Models::Permission.all.each{|p| p.destroy}
-    Class.new(Sequel::Model(DB[:users])).all.each{|u| u.destroy}
+    Ruolo::Models::Role.all.each(&:destroy)
+    Ruolo::Models::Permission.all.each(&:destroy)
+    Class.new(Sequel::Model(DB[:users])).all.each(&:destroy)
   end
 
   describe '#permission?' do
