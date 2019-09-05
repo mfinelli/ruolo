@@ -1,0 +1,6 @@
+---
+roles:
+  ROLE_ONE:
+    - PERMISSION_ONE
+  ROLE_TWO:
+    - PERMISSION_TWO
