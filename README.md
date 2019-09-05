@@ -133,7 +133,7 @@ Ruolo.configure do |config|
   config.connection = DB
 end
 
-Ruolo.sync!('./path/to/policy.yml')
+Ruolo.synchronize!('./path/to/policy.yml')
 ```
 
 ## Gem Development
