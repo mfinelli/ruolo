@@ -14,7 +14,7 @@ RSpec.describe Ruolo::Models::User do
   end
 
   before(:all) do
-    Ruolo.sync!(File.expand_path(File.join(__FILE__, '..', '..', '..', 'fixtures', 'policies', 'user_spec.yml')))
+    Ruolo.synchronize!(File.expand_path(File.join(__FILE__, '..', '..', '..', 'fixtures', 'policies', 'user_spec.yml')))
   end
 
   after(:all) do
