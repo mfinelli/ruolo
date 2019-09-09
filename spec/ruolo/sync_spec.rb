@@ -30,30 +30,30 @@ RSpec.describe Ruolo::Sync do
     end
 
     it 'adds missing roles' do
-      expect(Ruolo::Models::Role.all.map(&:name)).to eq(['EXISTING_ROLE', 'NEW_ROLE'])
+      expect(Ruolo::Models::Role.all.map(&:name)).to eq(%w[EXISTING_ROLE NEW_ROLE])
     end
 
     it 'removes old roles' do
-      expect(Ruolo::Models::Role.all.map(&:name)).to eq(['EXISTING_ROLE', 'NEW_ROLE'])
+      expect(Ruolo::Models::Role.all.map(&:name)).to eq(%w[EXISTING_ROLE NEW_ROLE])
     end
 
     it 'adds missing permissions' do
-      expect(Ruolo::Models::Permission.all.map(&:name)).to eq(['EXISTING_PERMISSION', 'NEW_PERMISSION'])
+      expect(Ruolo::Models::Permission.all.map(&:name)).to eq(%w[EXISTING_PERMISSION NEW_PERMISSION])
     end
 
     it 'removes old permissions' do
-      expect(Ruolo::Models::Permission.all.map(&:name)).to eq(['EXISTING_PERMISSION', 'NEW_PERMISSION'])
+      expect(Ruolo::Models::Permission.all.map(&:name)).to eq(%w[EXISTING_PERMISSION NEW_PERMISSION])
     end
 
     it 'associates new permissions to a role' do
-      ['EXISTING_ROLE', 'NEW_ROLE'].each do |role|
-        expect(Ruolo::Models::Role.where(name: role).first.permissions.map(&:name)).to eq(['EXISTING_PERMISSION', 'NEW_PERMISSION'])
+      %w[EXISTING_ROLE NEW_ROLE].each do |role|
+        expect(Ruolo::Models::Role.where(name: role).first.permissions.map(&:name)).to eq(%w[EXISTING_PERMISSION NEW_PERMISSION])
       end
     end
 
     it 'removes old permissions from a role' do
-      ['EXISTING_ROLE', 'NEW_ROLE'].each do |role|
-        expect(Ruolo::Models::Role.where(name: role).first.permissions.map(&:name)).to eq(['EXISTING_PERMISSION', 'NEW_PERMISSION'])
+      %w[EXISTING_ROLE NEW_ROLE].each do |role|
+        expect(Ruolo::Models::Role.where(name: role).first.permissions.map(&:name)).to eq(%w[EXISTING_PERMISSION NEW_PERMISSION])
       end
     end
   end
