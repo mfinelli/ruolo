@@ -6,6 +6,8 @@ require 'ruolo/configuration'
 require 'ruolo/models'
 
 module Ruolo
+  # This class manages the actual synchronization of the policy file with the
+  # database.
   class Sync
     # Create a new synchronization ojbect.
     #

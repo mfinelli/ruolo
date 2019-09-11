@@ -3,6 +3,8 @@
 require 'ruolo/configuration'
 require 'ruolo/version'
 
+# Define a policy file in yaml and ruolo will keep your roles and permissions
+# in sync with your database.
 module Ruolo
   class << self
     attr_writer :configuration
