@@ -6,6 +6,8 @@ require 'ruolo/configuration'
 
 module Ruolo
   module Models
+    # Models an individual role that has one or more permissions and can be
+    # assigned to one or more users.
     class Role < Sequel::Model
       plugin :timestamps, update_on_create: true
       many_to_many :permissions, join_table: :roles_permissions
