@@ -3,7 +3,10 @@
 module Ruolo
   # A class that defines all the configuration overrides.
   class Configuration
-    attr_accessor :connection, :user_class
+    # Sequel to connection to use.
+    attr_accessor :connection
+    # User class for association with ruolo models.
+    attr_accessor :user_class
 
     # Create a new configuration object.
     #

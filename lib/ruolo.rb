@@ -24,9 +24,7 @@ module Ruolo
 
   # Gives a block with which to configure.
   #
-  # @yieldparam connection [Sequel::Database] database connection to use
-  # @yieldparam user_class [String] the name of your user class (used for
-  #                                 associations)
+  # @yieldparam comfig [Ruolo::Configuration] configuration object
   # @yieldreturn [void]
   def self.configure
     yield(configuration)
