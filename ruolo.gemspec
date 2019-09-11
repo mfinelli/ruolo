@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.description = 'A library to keep your static role-based access control policies in sync with your database.'
   spec.homepage = 'https://github.com/mfinelli/ruolo'
   spec.license = 'Apache-2.0'
-  spec.required_ruby_version = '>= 2.4.0'
+  spec.required_ruby_version = '>= 2.5.0'
 
   spec.files = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
