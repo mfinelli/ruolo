@@ -19,13 +19,22 @@ module Ruolo
     # A mixin to include in downstream user classes that adds useful helper
     # methods for dealing with roles and permissions.
     module User
-      # Given the name of a permission determin whether the user's role
+      # Given the name of a permission determine whether the user's role
       # membership includes it.
       #
       # @param permission [String] the name of the permission
       # @return [Boolean] if the user has the permission or not
       def permission?(permission)
         roles.map { |role| role.permissions.map(&:name) }.flatten.uniq.include?(permission)
+      end
+
+      # Given a role name or array of role names determine if the user has
+      # that/those roles.
+      #
+      # @param role [String|Array<String>] role(s) to check
+      # @return [Boolean] if the user has the given role(s)
+      def role?(role)
+        !(roles.map(&:name) & Array(role)).empty?
       end
     end
   end

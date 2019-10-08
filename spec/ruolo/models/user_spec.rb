@@ -52,4 +52,37 @@ RSpec.describe Ruolo::Models::User do
       expect(user.permission?('PERMISSION_TWO')).to eq(false)
     end
   end
+
+  describe '#role?' do
+    let(:user) do
+      u = klass.create(email: Faker::Internet.unique.safe_email, password: 'password', first_name: 'fn', last_name: 'ln')
+      u.add_role(Ruolo::Models::Role.where(name: 'ROLE_ONE').first)
+      u.add_role(Ruolo::Models::Role.where(name: 'ROLE_TWO').first)
+      u
+    end
+
+    context 'with a string' do
+      it 'returns true if the user has the role' do
+        expect(user.role?('ROLE_ONE')).to eq(true)
+      end
+
+      it 'returns false if the user doesn\'t have the role' do
+        expect(user.role?('ROLE_THREE')).to eq(false)
+      end
+    end
+
+    context 'with an array' do
+      it 'returns true if the user has any of the roles' do
+        expect(user.role?(%w[ROLE_ONE])).to eq(true)
+      end
+
+      it 'returns false if the user doesn\'t have any of the roles' do
+        expect(user.role?(%w[ROLE_THREE])).to eq(false)
+      end
+
+      it 'returns true if the user has all of the roles' do
+        expect(user.role?(%w[ROLE_ONE ROLE_TWO])).to eq(true)
+      end
+    end
+  end
 end
