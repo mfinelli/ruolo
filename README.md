@@ -18,6 +18,18 @@ and authorization of users after that, `ruolo` is completely unopinionated.
 
 ## Usage
 
+### Require
+
+Include the gem in your gemfile:
+
+```ruby
+gem 'ruolo', require: false
+```
+
+Notice the `require: false` which is necessary so it doesn't automatically get
+included if you do something like `Bundler.require`. Make sure that you have a
+database connection and _then_ require the gem and configure it.
+
 ### Migrations
 
 You'll need to run the following database migration to setup your schema, fill
