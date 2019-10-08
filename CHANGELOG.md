@@ -3,10 +3,10 @@
 This file keeps track of changes between releases for the ruolo project
 which adheres to [semantic versioning](https://semver.org).
 
-## unreleased
+## v0.3.0 2019-10-08
 
-* Add a `role?` method to the user mixin to check for given roles instead
-  of permissions.
+Add a `role?` method to the user mixin to check for given roles instead of
+permissions.
 
 ## v0.2.0 2019-09-11
 
