@@ -7,3 +7,13 @@ AllCops:
 
 Layout/ExtraSpacing:
   AllowForAlignment: false
+
+# TODO: remove on next major rubocop
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
