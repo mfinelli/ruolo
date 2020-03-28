@@ -3,6 +3,11 @@
 This file keeps track of changes between releases for the ruolo project
 which adheres to [semantic versioning](https://semver.org).
 
+## unreleased
+
+Add `set_roles` method to the user mixin to synchronize desired roles for an
+individual user.
+
 ## v0.3.0 2019-10-08
 
 Add a `role?` method to the user mixin to check for given roles instead of

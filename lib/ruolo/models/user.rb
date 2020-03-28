@@ -36,6 +36,28 @@ module Ruolo
       def role?(role)
         !(roles.map(&:name) & Array(role)).empty?
       end
+
+      # Given a set of all roles that the user should have add/remove roles as
+      # necessary.
+      #
+      # @param wanted_roles [Array<String>] list of role names
+      # @return [void]
+      def set_roles(wanted_roles)
+        current_roles = roles.map(&:name)
+
+        remove = current_roles.reject { |r| wanted_roles.include?(r) }
+        add = wanted_roles.reject { |r| current_roles.include?(r) }
+
+        Ruolo.configuration.connection.transaction do
+          remove.each do |role|
+            remove_role(Ruolo::Models::Role.where(name: role).first)
+          end
+
+          add.each do |role|
+            add_role(Ruolo::Models::Role.where(name: role).first)
+          end
+        end
+      end
     end
   end
 end

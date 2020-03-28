@@ -85,4 +85,18 @@ RSpec.describe Ruolo::Models::User do
       end
     end
   end
+
+  describe '#set_roles' do
+    let(:user) do
+      u = klass.create(email: Faker::Internet.unique.safe_email, password: 'password', first_name: 'fn', last_name: 'ln')
+      u.add_role(Ruolo::Models::Role.where(name: 'ROLE_ONE').first)
+      u.add_role(Ruolo::Models::Role.where(name: 'ROLE_TWO').first)
+      u
+    end
+
+    it 'updates the roles correctly' do
+      user.set_roles(%w[ROLE_TWO ROLE_THREE])
+      expect(user.roles.map(&:name)).to eql(%w[ROLE_TWO ROLE_THREE])
+    end
+  end
 end
