@@ -1,7 +1,7 @@
 # Ruolo
 
 [![RubyGems](https://img.shields.io/gem/v/ruolo.svg)](https://rubygems.org/gems/ruolo)
-[![Build Status](https://travis-ci.org/mfinelli/ruolo.svg?branch=master)](https://travis-ci.org/mfinelli/ruolo)
+![Build Status](https://github.com/mfinelli/ruolo/workflows/CI/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/mfinelli/ruolo/badge.svg?branch=master)](https://coveralls.io/github/mfinelli/ruolo?branch=master)
 [![Inline docs](http://inch-ci.org/github/mfinelli/ruolo.svg?branch=master)](http://inch-ci.org/github/mfinelli/ruolo)
 
@@ -178,7 +178,7 @@ $ bundle exec bin/console
 ## License
 
 ```
-Copyright 2019 Mario Finelli
+Copyright 2019-2020 Mario Finelli
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

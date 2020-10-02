@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Copyright 2019 Mario Finelli
+# Copyright 2019-2020 Mario Finelli
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ require 'sequel'
 Coveralls.wear!
 
 DB = if ENV['TRAVIS'].to_s.casecmp('true').zero?
-       Sequel.connect('postgres://postgres@localhost/ruolo')
+       Sequel.connect('postgres://ruolo:ruolo@localhost/ruolo')
      else
        Sequel.connect('postgres://ruolo@localhost/ruolo')
      end
