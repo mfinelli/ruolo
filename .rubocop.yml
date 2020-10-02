@@ -3,17 +3,8 @@ inherit_from: .rubocop_todo.yml
 require: rubocop-rspec
 
 AllCops:
+  NewCops: enable
   TargetRubyVersion: 2.5.0
 
 Layout/ExtraSpacing:
   AllowForAlignment: false
-
-# TODO: remove on next major rubocop
-Style/HashEachMethods:
-  Enabled: true
-
-Style/HashTransformKeys:
-  Enabled: true
-
-Style/HashTransformValues:
-  Enabled: true
