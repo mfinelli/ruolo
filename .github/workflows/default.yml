@@ -12,6 +12,7 @@ jobs:
         ruby: [2.5, 2.6, 2.7]
       env:
         TRAVIS: "true"
+
     services:
       postgres:
         image: postgres
@@ -26,12 +27,12 @@ jobs:
         ports:
           - 5432:5432
 
-      steps:
-        - uses: actions/checkout@v2
-        - uses: actions/setup-ruby@v1
-          with:
-            ruby-version: ${{ matrix.ruby }}
-        - run: bundle install
-        - run: bundle exec rubocop
-        - run: bundle exec rspec
-        - run: bundle exec yard
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+      - run: bundle install
+      - run: bundle exec rubocop
+      - run: bundle exec rspec
+      - run: bundle exec yard
