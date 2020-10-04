@@ -1,0 +1,33 @@
+---
+name: Publish Rubygem
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  main:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+      - run: gem build ruolo.gemspec
+
+      - name: setup credentials
+        run: |
+          mkdir -p $HOME/.gem
+          touch $HOME/.gem/credentials
+          chmod 0600 $HOME/.gem/credentials
+          printf -- "---\n:github: ${GH_API_KEY}\n" > $HOME/.gem/credentials
+          printf -- ":rubygems_api_key: ${RUBYGEMS_API_KEY}\n" > $HOME/.gem/credentials
+        env:
+          GH_API_KEY: Bearer ${{ secrets.GITHUB_TOKEN }}
+          RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
+
+      - name: publish to rubygems
+        run: |
+          gem push *.gem
+      - name: publish to github packages
+        run: |
+          gem push --KEY github --host https://rubygems.pkg.github.com/${{ github.repository_owner }} *.gem
