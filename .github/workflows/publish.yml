@@ -20,7 +20,7 @@ jobs:
           touch $HOME/.gem/credentials
           chmod 0600 $HOME/.gem/credentials
           printf -- "---\n:github: ${GH_API_KEY}\n" > $HOME/.gem/credentials
-          printf -- ":rubygems_api_key: ${RUBYGEMS_API_KEY}\n" > $HOME/.gem/credentials
+          printf -- ":rubygems_api_key: ${RUBYGEMS_API_KEY}\n" >> $HOME/.gem/credentials
         env:
           GH_API_KEY: Bearer ${{ secrets.GITHUB_TOKEN }}
           RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
