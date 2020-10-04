@@ -36,3 +36,4 @@ jobs:
       - run: bundle exec rubocop
       - run: bundle exec rspec
       - run: bundle exec yard
+      - run: gem build ruolo.gemspec
