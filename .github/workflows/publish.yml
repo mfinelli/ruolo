@@ -30,4 +30,4 @@ jobs:
           gem push *.gem
       - name: publish to github packages
         run: |
-          gem push --KEY github --host https://rubygems.pkg.github.com/${{ github.repository_owner }} *.gem
+          gem push --key github --host https://rubygems.pkg.github.com/${{ github.repository_owner }} *.gem
