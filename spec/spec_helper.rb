@@ -33,7 +33,10 @@ DB.run "DROP TABLE #{tables};" unless tables.empty?
 
 # Create the necessary tables
 Sequel.extension :migration
-Sequel::Migrator.run(DB, File.expand_path(File.join(File.dirname(__FILE__), 'fixtures', 'migrations')))
+Sequel::Migrator.run(
+  DB,
+  File.expand_path(File.join(File.dirname(__FILE__), 'fixtures', 'migrations'))
+)
 
 require 'ruolo'
 require_relative 'mocks/user'

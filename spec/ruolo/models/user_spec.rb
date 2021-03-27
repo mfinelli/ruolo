@@ -23,12 +23,18 @@ RSpec.describe Ruolo::Models::User do
     Class.new(Sequel::Model(DB[:users])) do
       include Ruolo::Models::User
       plugin :timestamps, update_on_create: true
-      many_to_many :roles, left_key: :user_id, join_table: :users_roles, class: 'Ruolo::Models::Role'
+      many_to_many :roles, left_key: :user_id, join_table: :users_roles,
+                           class: 'Ruolo::Models::Role'
     end
   end
 
   before(:all) do
-    Ruolo.synchronize!(File.expand_path(File.join(__FILE__, '..', '..', '..', 'fixtures', 'policies', 'user_spec.yml')))
+    Ruolo.synchronize!(
+      File.expand_path(
+        File.join(__FILE__, '..', '..', '..', 'fixtures', 'policies',
+                  'user_spec.yml')
+      )
+    )
   end
 
   after(:all) do
@@ -39,7 +45,8 @@ RSpec.describe Ruolo::Models::User do
 
   describe '#permission?' do
     let(:user) do
-      u = klass.create(email: Faker::Internet.unique.safe_email, password: 'password', first_name: 'fn', last_name: 'ln')
+      u = klass.create(email: Faker::Internet.unique.safe_email,
+                       password: 'password', first_name: 'fn', last_name: 'ln')
       u.add_role(Ruolo::Models::Role.where(name: 'ROLE_ONE').first)
       u
     end
@@ -55,7 +62,8 @@ RSpec.describe Ruolo::Models::User do
 
   describe '#role?' do
     let(:user) do
-      u = klass.create(email: Faker::Internet.unique.safe_email, password: 'password', first_name: 'fn', last_name: 'ln')
+      u = klass.create(email: Faker::Internet.unique.safe_email,
+                       password: 'password', first_name: 'fn', last_name: 'ln')
       u.add_role(Ruolo::Models::Role.where(name: 'ROLE_ONE').first)
       u.add_role(Ruolo::Models::Role.where(name: 'ROLE_TWO').first)
       u
@@ -88,7 +96,8 @@ RSpec.describe Ruolo::Models::User do
 
   describe '#set_roles' do
     let(:user) do
-      u = klass.create(email: Faker::Internet.unique.safe_email, password: 'password', first_name: 'fn', last_name: 'ln')
+      u = klass.create(email: Faker::Internet.unique.safe_email,
+                       password: 'password', first_name: 'fn', last_name: 'ln')
       u.add_role(Ruolo::Models::Role.where(name: 'ROLE_ONE').first)
       u.add_role(Ruolo::Models::Role.where(name: 'ROLE_TWO').first)
       u
