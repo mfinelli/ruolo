@@ -28,7 +28,8 @@ module Ruolo
     # @param policy_file [String] path to the yaml policy file
     # @return [Ruolo::Sync] the new sync option with a parsed policy file
     def initialize(policy_file)
-      @policy_document = YAML.safe_load(File.read(policy_file), symbolize_names: true)
+      @policy_document = YAML.safe_load(File.read(policy_file),
+                                        symbolize_names: true)
     end
 
     # Bring the configured database in sync with the policy file, adding and
@@ -51,7 +52,9 @@ module Ruolo
     #
     # @return [Array<String>] the list of all permissions
     def permissions_from_policy
-      @policy_document[:roles].map { |_role, permissions| permissions }.flatten.uniq
+      @policy_document[:roles].map do |_role, permissions|
+        permissions
+      end.flatten.uniq
     end
 
     # Get all of the roles defined in the policy.
@@ -114,7 +117,9 @@ module Ruolo
         end
 
         add.each do |permission|
-          role.add_permission Ruolo::Models::Permission.where(name: permission).first
+          role.add_permission(
+            Ruolo::Models::Permission.where(name: permission).first
+          )
         end
       end
     end

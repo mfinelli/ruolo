@@ -25,7 +25,8 @@ module Ruolo
     class Role < Sequel::Model
       plugin :timestamps, update_on_create: true
       many_to_many :permissions, join_table: :roles_permissions
-      many_to_many :users, join_table: :users_roles, class: Ruolo.configuration.user_class
+      many_to_many :users, join_table: :users_roles,
+                           class: Ruolo.configuration.user_class
     end
   end
 end

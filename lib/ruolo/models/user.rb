@@ -25,7 +25,9 @@ module Ruolo
       # @param permission [String] the name of the permission
       # @return [Boolean] if the user has the permission or not
       def permission?(permission)
-        roles.map { |role| role.permissions.map(&:name) }.flatten.uniq.include?(permission)
+        roles.map do |role|
+          role.permissions.map(&:name)
+        end.flatten.uniq.include?(permission)
       end
 
       # Given a role name or array of role names determine if the user has
