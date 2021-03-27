@@ -30,7 +30,12 @@ end
 
 def migrate_db!
   Sequel.extension :migration
-  Sequel::Migrator.run(DB, File.expand_path(File.join(File.dirname(__FILE__), '..', 'spec', 'fixtures', 'migrations')))
+  Sequel::Migrator.run(
+    DB,
+    File.expand_path(
+      File.join(File.dirname(__FILE__), '..', 'spec', 'fixtures', 'migrations')
+    )
+  )
 end
 
 begin
