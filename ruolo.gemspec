@@ -10,8 +10,10 @@ Gem::Specification.new do |spec|
   spec.authors = ['Mario Finelli']
   spec.email = ['mario@finel.li']
 
-  spec.summary = 'A library to keep your static role-based access control policies in sync with your database.'
-  spec.description = 'A library to keep your static role-based access control policies in sync with your database.'
+  spec.summary = 'A library to keep your static role-based access control ' \
+    'policies in sync with your database.'
+  spec.description = 'A library to keep your static role-based access ' \
+    'control policies in sync with your database.'
   spec.homepage = 'https://github.com/mfinelli/ruolo'
   spec.license = 'Apache-2.0'
   spec.required_ruby_version = '>= 2.5.0'
