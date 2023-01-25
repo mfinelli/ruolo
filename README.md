@@ -61,7 +61,7 @@ Sequel.migration do
       column :created_at, DateTime, null: false
       column :updated_at, DateTime, null: false
 
-      constraint(:valid_name, name: /^[A-Z]([A-Z0-9]*[\-._]?)*$/)
+      constraint(:valid_name, name: /^[A-Z]([A-Z0-9]*[-._]?)*$/)
     end
 
     create_table :permissions do
@@ -72,7 +72,7 @@ Sequel.migration do
       column :created_at, DateTime, null: false
       column :updated_at, DateTime, null: false
 
-      constraint(:valid_name, name: /^[A-Z]([A-Z0-9]*[\-._]?)*$/)
+      constraint(:valid_name, name: /^[A-Z]([A-Z0-9]*[-._]?)*$/)
     end
 
     create_table :users_roles do
@@ -178,7 +178,7 @@ $ bundle exec bin/console
 ## License
 
 ```
-Copyright 2019-2020 Mario Finelli
+Copyright 2019-2023 Mario Finelli
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
