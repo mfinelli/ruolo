@@ -3,6 +3,10 @@
 This file keeps track of changes between releases for the ruolo project
 which adheres to [semantic versioning](https://semver.org).
 
+## unreleased
+
+**BREAKING:** Drop support for Ruby <2.6.
+
 ## v0.4.1 2020-10-04
 
 Correct sample database constraints to remove a useless regular expression
