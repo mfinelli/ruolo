@@ -52,11 +52,11 @@ RSpec.describe Ruolo::Models::User do
     end
 
     it 'returns true if it has the role' do
-      expect(user.permission?('PERMISSION_ONE')).to eq(true)
+      expect(user.permission?('PERMISSION_ONE')).to be(true)
     end
 
     it 'returns false if it doesn\'t have the role' do
-      expect(user.permission?('PERMISSION_TWO')).to eq(false)
+      expect(user.permission?('PERMISSION_TWO')).to be(false)
     end
   end
 
@@ -71,25 +71,25 @@ RSpec.describe Ruolo::Models::User do
 
     context 'with a string' do
       it 'returns true if the user has the role' do
-        expect(user.role?('ROLE_ONE')).to eq(true)
+        expect(user.role?('ROLE_ONE')).to be(true)
       end
 
       it 'returns false if the user doesn\'t have the role' do
-        expect(user.role?('ROLE_THREE')).to eq(false)
+        expect(user.role?('ROLE_THREE')).to be(false)
       end
     end
 
     context 'with an array' do
       it 'returns true if the user has any of the roles' do
-        expect(user.role?(%w[ROLE_ONE])).to eq(true)
+        expect(user.role?(%w[ROLE_ONE])).to be(true)
       end
 
       it 'returns false if the user doesn\'t have any of the roles' do
-        expect(user.role?(%w[ROLE_THREE])).to eq(false)
+        expect(user.role?(%w[ROLE_THREE])).to be(false)
       end
 
       it 'returns true if the user has all of the roles' do
-        expect(user.role?(%w[ROLE_ONE ROLE_TWO])).to eq(true)
+        expect(user.role?(%w[ROLE_ONE ROLE_TWO])).to be(true)
       end
     end
   end

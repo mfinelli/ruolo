@@ -49,6 +49,7 @@ Ruolo.configure do |config|
   config.connection = DB
 end
 
+# Sample user class for testing.
 class User < Sequel::Model
   include Ruolo::Models::User
   plugin :timestamps, update_on_create: true

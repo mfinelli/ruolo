@@ -39,7 +39,7 @@ Sequel.migration do
       column :created_at, DateTime, null: false
       column :updated_at, DateTime, null: false
 
-      constraint(:valid_name, name: /^[A-Z]([A-Z0-9]*[\-._]?)*$/)
+      constraint(:valid_name, name: /^[A-Z]([A-Z0-9]*[-._]?)*$/)
     end
 
     create_table :permissions do
@@ -50,7 +50,7 @@ Sequel.migration do
       column :created_at, DateTime, null: false
       column :updated_at, DateTime, null: false
 
-      constraint(:valid_name, name: /^[A-Z]([A-Z0-9]*[\-._]?)*$/)
+      constraint(:valid_name, name: /^[A-Z]([A-Z0-9]*[-._]?)*$/)
     end
 
     create_table :users_roles do

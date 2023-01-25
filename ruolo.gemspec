@@ -11,9 +11,9 @@ Gem::Specification.new do |spec|
   spec.email = ['mario@finel.li']
 
   spec.summary = 'A library to keep your static role-based access control ' \
-    'policies in sync with your database.'
+                 'policies in sync with your database.'
   spec.description = 'A library to keep your static role-based access ' \
-    'control policies in sync with your database.'
+                     'control policies in sync with your database.'
   spec.homepage = 'https://github.com/mfinelli/ruolo'
   spec.license = 'Apache-2.0'
   spec.required_ruby_version = '>= 2.5.0'
@@ -25,17 +25,4 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'sequel', '~> 5.0'
-
-  spec.add_development_dependency 'bundler'
-  spec.add_development_dependency 'coveralls'
-  spec.add_development_dependency 'factory_bot'
-  spec.add_development_dependency 'faker'
-  spec.add_development_dependency 'pg'
-  spec.add_development_dependency 'pry'
-  spec.add_development_dependency 'redcarpet'
-  spec.add_development_dependency 'rspec'
-  spec.add_development_dependency 'rubocop'
-  spec.add_development_dependency 'rubocop-rspec'
-  spec.add_development_dependency 'simplecov'
-  spec.add_development_dependency 'yard'
 end
